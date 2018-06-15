@@ -1,0 +1,57 @@
+USE [CrawlerDatabase]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[product_items_nocode_v2](
+	[item_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[market] [nvarchar](64) NOT NULL,
+	[url] [nvarchar](2048) NOT NULL CONSTRAINT [DF_product_items_nocode_v2_min_url]  DEFAULT (N'http://internal.hubk.co.kr/temporary_resource/'+CONVERT([nvarchar](64),newid())),
+	[found_datetime] [datetime] NOT NULL CONSTRAINT [DF_product_items_nocode_v2_min_found_datetime]  DEFAULT (getdate()),
+	[update_datetime] [datetime] NOT NULL CONSTRAINT [DF_product_items_nocode_v2_min_update_datetime]  DEFAULT (getdate()),
+	[version] [int] NOT NULL CONSTRAINT [DF_product_items_nocode_v2_min_version]  DEFAULT ((1)),
+	[item_title] [nvarchar](512) NULL,
+	[item_categories] [nvarchar](2048) NULL,
+	[item_price] [decimal](18, 0) NULL,
+	[item_price_currency] [nvarchar](32) NULL,
+	[item_maker] [nvarchar](512) NULL,
+	[item_producer] [nvarchar](512) NULL,
+	[item_korean_article_no] [nvarchar](128) NULL,
+	[item_unit] [nvarchar](512) NULL,
+	[item_spec] [nvarchar](2048) NULL,
+	[item_capacity] [nvarchar](512) NULL,
+ CONSTRAINT [PK_product_items_nocode_v2_min] PRIMARY KEY CLUSTERED 
+(
+	[item_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[product_items_v2](
+	[item_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[market] [nvarchar](64) NOT NULL,
+	[url] [nvarchar](2048) NOT NULL CONSTRAINT [DF_product_items_v2_min_url]  DEFAULT (N'http://internal.hubk.co.kr/temporary_resource/'+CONVERT([nvarchar](64),newid())),
+	[found_datetime] [datetime] NOT NULL CONSTRAINT [DF_product_items_v2_min_found_datetime]  DEFAULT (getdate()),
+	[update_datetime] [datetime] NOT NULL CONSTRAINT [DF_product_items_v2_min_update_datetime]  DEFAULT (getdate()),
+	[version] [int] NOT NULL CONSTRAINT [DF_product_items_v2_min_version]  DEFAULT ((1)),
+	[item_title] [nvarchar](512) NULL,
+	[item_categories] [nvarchar](2048) NULL,
+	[item_price] [decimal](18, 0) NULL,
+	[item_price_currency] [nvarchar](32) NULL,
+	[item_maker] [nvarchar](512) NULL,
+	[item_producer] [nvarchar](512) NULL,
+	[item_korean_article_no] [nvarchar](128) NULL,
+	[item_unit] [nvarchar](512) NULL,
+	[item_spec] [nvarchar](2048) NULL,
+	[item_capacity] [nvarchar](512) NULL,
+ CONSTRAINT [PK_product_items_v2_min] PRIMARY KEY CLUSTERED 
+(
+	[item_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

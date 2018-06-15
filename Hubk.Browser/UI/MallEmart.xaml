@@ -19,8 +19,7 @@
 
         <DataGrid Name="Clst" Height="444" Width="151" Canvas.Left="120" Canvas.Top="23" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="Clst_MouseLeftButtonUp">
         </DataGrid>
-        <TextBox Name="Endp" Height="23" Canvas.Left="30" TextWrapping="Wrap" Text="10" Canvas.Top="376" Width="56"/>
- 
+
 
 
     </Canvas>

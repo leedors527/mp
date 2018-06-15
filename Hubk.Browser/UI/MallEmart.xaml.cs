@@ -139,7 +139,7 @@ namespace Hubk.Browser.UI
         {
             if (ActionStart == false)
             {
-                if (Clst.SelectedIndex <= int.Parse(Endp.Text))
+                if (Clst.SelectedIndex+1 < Clst.Items.Count)
                 {
                     ActionStart = true;
                     ActionIdx = Clst.SelectedIndex;
@@ -334,8 +334,13 @@ namespace Hubk.Browser.UI
                     itemcount.Text = myQ.Count.ToString() + "/" + totp.ToString();
                     if (myQ.Count > 0)
                         RRotate(rr);
-                    else if (myQ.Count == 0 && dt.Rows.Count > 0)
-                        Martdata.SveData.SaveDataTable(dt, @"C:\marketpro\data");
+                    else if (myQ.Count == 0 && page > 0)// && dt.Rows.Count > 0)
+                    {
+                        page = 0;
+                        ActionStart = false;
+                        Clst.SelectedIndex = ActionIdx + 1;
+                        Clst_MouseLeftButtonUp(null, null);
+                    }
                 }
                 else
                 {
@@ -346,8 +351,9 @@ namespace Hubk.Browser.UI
                         //string u = Application.Current.StartupUri + @"\Crw";
                         //Martdata.SveData.SaveDataTable(dt, u);
                         //this.Close();
-                        if (Clst.SelectedIndex == ActionIdx && ActionIdx < Clst.Items.Count)
+                        if (Clst.SelectedIndex == ActionIdx && ActionIdx+1 < Clst.Items.Count && page>0)
                         {
+                            page = 0;
                             ActionStart = false;
                             Clst.SelectedIndex = ActionIdx + 1;
                             Clst_MouseLeftButtonUp(null, null);
@@ -440,8 +446,9 @@ namespace Hubk.Browser.UI
                 itemcount.Text = myQ.Count.ToString() + "/" + totp.ToString();
                 if(myQ.Count==0)
                 {
-                    if(Clst.SelectedIndex==ActionIdx && ActionIdx<Clst.Items.Count)
+                    if(Clst.SelectedIndex==ActionIdx && ActionIdx+1<Clst.Items.Count && page > 0)
                     {
+                        page = 0;
                         ActionStart = false;
                         Clst.SelectedIndex = ActionIdx + 1;
                         Clst_MouseLeftButtonUp(null, null);
